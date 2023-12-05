@@ -1,11 +1,10 @@
 # Імпорт бібліотеки OpenCV
 import cv2
-
 # Завантаження класифікатора для виявлення обличчя
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 # Зчитування зображення з файлу
-img = cv2.imread('messi_face.JPG')
+img = cv2.imread('struk.png')
 
 # Конвертація зображення у відтінки сірого
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

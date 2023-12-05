@@ -76,7 +76,8 @@ recall = cross_val_score(classifier, X, y, scoring='recall_weighted', cv=num_fol
 print("Recall score: " + str(round(100 * recall.mean(), 2)) + "%")
 
 # Передбачення результату для тестової точки даних
-input_data = ['37', 'Private', '215646', 'HS-grad', '9', 'Never-married', 'Handlers-cleaners', 'Not-in-family', 'White', 'Male', '0', '0', '40', 'United-States']
+input_data = ['37', 'Private', '215646', 'HS-grad', '9', 'Never-married', 'Handlers-cleaners',
+              'Not-in-family', 'White', 'Male', '0', '0', '40', 'United-States']
 
 # Кодування тестової точки даних
 input_data_encoded = [-1] * len(input_data)
@@ -90,9 +91,10 @@ for i, item in enumerate(input_data):
 
 input_data_encoded = np.array(input_data_encoded).astype(int).reshape(1, -1)
 
-# Використання класифікатора для кодованої точки даних та виведення результату
+# Використання класифікатора для тестової точки даних та виведення результату
 predicted_class = classifier.predict(input_data_encoded)
 print(label_encoder[-1].inverse_transform(predicted_class)[0])
+
 
 
 

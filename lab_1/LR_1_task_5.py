@@ -111,10 +111,10 @@ def struk_precision_score(y_true, y_pred):
 
 
 # check results
-assert struk_precision_score(df.actual_label.values, df.predicted_RF.values) == precision_score(df.actual_label.values,
-                                                                                                df.predicted_RF.values), 'struk_recall_score failed on RF'
-assert struk_precision_score(df.actual_label.values, df.predicted_LR.values) == precision_score(df.actual_label.values,
-                                                                                                df.predicted_LR.values), 'struk_recall_score failed on LR'
+assert (struk_precision_score(df.actual_label.values, df.predicted_RF.values) ==
+        precision_score(df.actual_label.values, df.predicted_RF.values)), 'struk_recall_score failed on RF'
+assert (struk_precision_score(df.actual_label.values, df.predicted_LR.values) ==
+        precision_score(df.actual_label.values, df.predicted_LR.values)), 'struk_recall_score failed on LR'
 print('Precision RF: %.3f' % (struk_precision_score(df.actual_label.values, df.predicted_RF.values)))
 print('Precision LR: %.3f' % (struk_precision_score(df.actual_label.values, df.predicted_LR.values)))
 
@@ -131,10 +131,10 @@ def struk_f1_score(y_true, y_pred):
 
 
 # Check results
-assert struk_f1_score(df.actual_label.values, df.predicted_RF.values) == f1_score(df.actual_label.values,
-                                                                                  df.predicted_RF.values), 'struk_f1_score failed on RF'
-assert struk_f1_score(df.actual_label.values, df.predicted_LR.values) == f1_score(df.actual_label.values,
-                                                                                  df.predicted_LR.values), 'struk_f1_score failed on LR'
+assert (struk_f1_score(df.actual_label.values, df.predicted_RF.values) ==
+        f1_score(df.actual_label.values,df.predicted_RF.values)), 'struk_f1_score failed on RF'
+assert (struk_f1_score(df.actual_label.values, df.predicted_LR.values) ==
+        f1_score(df.actual_label.values,df.predicted_LR.values)), 'struk_f1_score failed on LR'
 
 print('F1 RF: %.3f' % (struk_f1_score(df.actual_label.values, df.predicted_RF.values)))
 print('F1 LR: %.3f' % (struk_f1_score(df.actual_label.values, df.predicted_LR.values)))

@@ -70,7 +70,7 @@ if __name__=='__main__':
     print(classification_report(y_test, y_test_pred, target_names=class_names))
     print("#"*40 + "\n")
 
-    # Обчислення параметрів довірливості
+ # Обчислення параметрів довірливості
     test_datapoints = np.array([[5, 5], [3, 6], [6, 4], [7, 2], [4, 4], [5, 2]])
 
     print("\nConfidence measure:")
@@ -85,3 +85,5 @@ if __name__=='__main__':
             'Тестові точки даних')
 
     plt.show()
+
+# to run - python LR_4_task_1.py --classifier-type rf or python LR_4_task_1.py --classifier-type erf

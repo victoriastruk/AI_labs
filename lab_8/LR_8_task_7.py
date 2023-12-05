@@ -34,22 +34,22 @@ markers = markers + 1
 # область невідомого
 markers[unknown == 255] = 0
 
-# Використання функції watershed для визначення маркерних ліній
-markers = cv2.watershed(img, markers)
+# Розфарбовування об'єктів на зображенні на основі моментів
+colors = {}
+for i in range(1, ret + 1):
+    mask = (markers == i).astype(np.uint8)
+    moments = cv2.moments(mask)
+    if moments["m00"] != 0:
+        centroid_x = int(moments["m10"] / moments["m00"])
+        centroid_y = int(moments["m01"] / moments["m00"])
+        color = img[centroid_y, centroid_x]
+        # Збільшення інтенсивності кольорів
+        color = np.clip(color * 1.5, 0, 255).astype(np.uint8)
+        colors[i] = color
 
-# Додаткова частина коду для ідентифікації монет за розміром
-for label in np.unique(markers):
-    if label == 0:
-        continue  # Пропустити фоновий маркер
-    mask = np.zeros_like(markers, dtype=np.uint8)
-    mask[markers == label] = 255
-    contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    if len(contours) > 0:
-        # Обчислення прямокутника, обведеного контуром
-        x, y, w, h = cv2.boundingRect(contours[0])
-        # Вибір кольору на основі розміру
-        color = [w % 255, h % 255, (w * h) % 255]
-        cv2.drawContours(img, contours, -1, color, -1)
+# Розфарбовування об'єктів на зображенні
+for i in range(1, ret + 1):
+    img[markers == i] = colors[i]
 
 # Відображення результату
 cv2.imshow("Coins Marked", img)

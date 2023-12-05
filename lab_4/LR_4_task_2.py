@@ -56,3 +56,6 @@ print(classification_report(y_test, y_test_pred, target_names=class_names, zero_
 print("#"*40 + "\n")
 
 plt.show()
+
+# to run - python --W ignore LR_4_task_2.py
+# or python LR_4_task_2.py balance

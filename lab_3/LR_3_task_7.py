@@ -51,7 +51,8 @@ plt.scatter(X[:, 0], X[:, 1], marker='o', facecolors='none', edgecolors='black',
 
 # Відображення центрів кластерів
 cluster_centers = kmeans.cluster_centers_
-plt.scatter(cluster_centers[:,0], cluster_centers[:,1], marker='o', s=210, linewidths=4, color='black', zorder=12, facecolors='black')
+plt.scatter(cluster_centers[:,0], cluster_centers[:,1], marker='o', s=210, linewidths=4,
+            color='black', zorder=12, facecolors='black')
 x_min, x_max = X[:,0].min() - 1, X[:,0].max() + 1
 x_min, x_max = X[:,1].min() - 1, X[:,1].max() + 1
 plt.title('Межі кластерів')

@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # Зчитання зображення з файлу
-img = cv2.imread("struk.jpg")
+img = cv2.imread("struk.png")
 
 # Визначення ядра для морфологічних операцій (розширення та ерозія)
 kernel = np.ones((5,5), np.uint8)

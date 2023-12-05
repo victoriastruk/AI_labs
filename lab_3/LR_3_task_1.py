@@ -56,3 +56,4 @@ with open(output_model_file, 'wb') as f:
 y_test_pred_new = regressor.predict(X_test)
 print("\nNew mean absolute error =",
 round(sm.mean_absolute_error(y_test, y_test_pred_new), 2))
+

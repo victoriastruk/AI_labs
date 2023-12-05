@@ -1,9 +1,9 @@
 import cv2 as cv
 from matplotlib import pyplot as plt
 
-img = cv.imread('messi_full.JPG',0)
+img = cv.imread('struk.png',0)
 img2 = img.copy()
-template = cv.imread('messi_face.JPG',0)
+template = cv.imread('struk_face.png',0)
 
 w, h = template.shape[::-1]
 # All the 6 methods for comparison in a list
