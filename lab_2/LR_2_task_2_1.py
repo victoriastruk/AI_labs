@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn import preprocessing
 from sklearn.svm import SVC
 from sklearn.multiclass import OneVsOneClassifier
@@ -49,19 +50,17 @@ X = X_encoded[:, :-1].astype(int)
 y = X_encoded[:, -1].astype(int)
 
 # Створення SVМ-класифікатора
-classifier = SVC(kernel='poly', degree=8)
+classifier = OneVsOneClassifier(SVC(kernel='poly', degree=8))
 
 # Навчання класифікатора
 classifier.fit(X, y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
-
-classifier1 = SVC(kernel='poly', degree=8)
-classifier1.fit(X_train, y_train)
+classifier.fit(X_train, y_train)
 y_test_pred = classifier.predict(X_test)
 
 num_folds = 3
-
+print("Poly Kernel::")
 # Обчислення F-міри для SVМ-класифікатора
 f1 = cross_val_score(classifier, X, y, scoring='f1_weighted', cv=num_folds)
 print("F1 score: " + str(round(100 * f1.mean(), 2)) + "%")
@@ -74,6 +73,7 @@ print("Precision score: " + str(round(100 * precision.mean(), 2)) + "%")
 # Обчислення повноти для SVМ-класифікатора
 recall = cross_val_score(classifier, X, y, scoring='recall_weighted', cv=num_folds)
 print("Recall score: " + str(round(100 * recall.mean(), 2)) + "%")
+
 
 # Передбачення результату для тестової точки даних
 input_data = ['37', 'Private', '215646', 'HS-grad', '9', 'Never-married', 'Handlers-cleaners', 'Not-in-family', 'White', 'Male', '0', '0', '40', 'United-States']
@@ -91,8 +91,7 @@ for i, item in enumerate(input_data):
 input_data_encoded = np.array(input_data_encoded).astype(int).reshape(1, -1)
 
 # Використання класифікатора для кодованої точки даних та виведення результату
-predicted_class = classifier1.predict(input_data_encoded)
+predicted_class = classifier.predict(input_data_encoded)
 print(label_encoder[-1].inverse_transform(predicted_class)[0])
-
 
 

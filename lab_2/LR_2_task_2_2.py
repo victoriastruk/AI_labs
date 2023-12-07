@@ -50,14 +50,12 @@ X = X_encoded[:, :-1].astype(int)
 y = X_encoded[:, -1].astype(int)
 
 # Створення SVМ-класифікатора
-classifier = OneVsOneClassifier(SVC(kernel='rbf', random_state=0))
+classifier = OneVsOneClassifier(SVC(kernel='rbf'))
 
 # Навчання класифікатора
 classifier.fit(X, y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
-
-classifier = OneVsOneClassifier(SVC(kernel='rbf', random_state=0))
 classifier.fit(X_train, y_train)
 y_test_pred = classifier.predict(X_test)
 
